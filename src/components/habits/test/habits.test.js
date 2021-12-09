@@ -54,7 +54,7 @@ describe('habits', () => {
             expect(onIncrement).toHaveBeenCalledWith(habits[0]);
         })
         it('calls onDecrement when clicking the "decrement" button', () => {
-            const button = screen.getAllByTitle('decrese')[0];
+            const button = screen.getAllByTitle('decrease')[0];
             userEvent.click(button);
             expect(onDecrement).toHaveBeenCalledWith(habits[0]);
         })

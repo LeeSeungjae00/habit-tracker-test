@@ -64,7 +64,7 @@ Array [
         <button
           className="habit-button habit-decrease"
           onClick={[Function]}
-          title="decrese"
+          title="decrease"
         >
           <i
             className="fas fa-minus-square"
@@ -107,7 +107,7 @@ Array [
         <button
           className="habit-button habit-decrease"
           onClick={[Function]}
-          title="decrese"
+          title="decrease"
         >
           <i
             className="fas fa-minus-square"
@@ -150,7 +150,7 @@ Array [
         <button
           className="habit-button habit-decrease"
           onClick={[Function]}
-          title="decrese"
+          title="decrease"
         >
           <i
             className="fas fa-minus-square"

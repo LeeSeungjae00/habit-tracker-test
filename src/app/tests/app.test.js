@@ -70,8 +70,8 @@ describe('app', () => {
             
         })
 
-        it('decrese an habit', () => {
-            const button = screen.getAllByTitle('decrese');
+        it('decrease an habit', () => {
+            const button = screen.getAllByTitle('decrease');
 
             for(let i = 0 ; i < 10 ; i++){
                 userEvent.click(button[2]);
@@ -85,7 +85,7 @@ describe('app', () => {
             const button = screen.getByText('Reset All');
 
             userEvent.click(button);
-             
+
             const habitCount = screen.getAllByTestId('habit-count');
 
             habitCount.forEach((count) => {

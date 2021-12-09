@@ -47,7 +47,7 @@ exports[`habits render 1`] = `
       <button
         className="habit-button habit-decrease"
         onClick={[Function]}
-        title="decrese"
+        title="decrease"
       >
         <i
           className="fas fa-minus-square"
@@ -90,7 +90,7 @@ exports[`habits render 1`] = `
       <button
         className="habit-button habit-decrease"
         onClick={[Function]}
-        title="decrese"
+        title="decrease"
       >
         <i
           className="fas fa-minus-square"
