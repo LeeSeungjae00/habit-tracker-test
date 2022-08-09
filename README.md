@@ -46,3 +46,54 @@ it(~~~, () => {
     expect(onSuccess).toHaveBeenCalledWith('yes') // 위와 동일
 })
 ```
+
+# 네트워크를 통해 백엔드에서 정보를 가져오는 test
+### mock 을 이용해 정보 가지고 오는 추천하지 않는 코드 mock 을 너무 남용함
+```
+jest.mock('가져올 가짜 함수')
+...
+
+let productSevice;
+const fetchItems = fest.fn(async () =? [
+    {item : "Milk", ~~},
+    ...
+])
+
+ProductClient.mockImplementation(() => {
+    fetchItems
+}) // productClient 내부에서 import 해온 fetchItems 를 우리가 만든 mock fetchItems 로 바꿀거야
+//장점은 네트워크에 환경적인 부분 제거하고 원하는 로직만 가져올 수 있음
+
+breforeEach(() => {
+    productService = new ProductService();
+})
+```
+
+내부 의존성을 mock 으로 대체해서 사용
+
+### mock 대신 stub 을 사용해보기
+stub vs mock
+둘다 진짜가 아닌 가짜
+mock 구현사항이 없고 내가 원하는 부분사항만 가짜
+Stub 기존에 쓰이는 진짜의 인터페이스를 다 충족하는 그런 느낌
+
+stub_product_client 이런식으로 stub 을 만듬
+class StubProductClient{
+    async fetchItems(){
+        retirm [
+            {...~}
+        ]
+    }
+}
+이런식으로 동일한 인터페이스지만 바로 값을 반환하는 stub 을 만듬
+
+```
+//스텁 임포트 client 대신
+...
+let productService;
+breforeEach(() => {
+    productService = new ProductService(new StubClient); // DI 가 없이 class 를 먼저 만들자
+})
+
+...
+```
