@@ -13,7 +13,7 @@ jest -> jsdom 을 사용하여 dom을 가진 환경처럼 비슷하게 동작 je
 
 React Testing Library -> React components 를 테스트 할 수 있음 내부 구조 사항을 의존하지 않은 상태로
 
-Jest 유닛 test 작성법
+# Jest 유닛 test 작성법
 
 describe(test 이름, () => {
     초기 변수들 선언
@@ -25,3 +25,24 @@ describe(test 이름, () => {
         expect(변수).test할 메소드
     })
 })
+
+# 오브젝트 불변성 테스트도 진행하기
+
+# 비동기 test 하기
+expect(Promise).resolve.toEqual(..)
+async, await 사용하여 test
+
+# Mock, Stub 에 대하여
+mock function 을 통해 호출 되었는지 어떤 인자 값을 받았는지, 리턴값이 전달되는지 test 가능
+```
+beforeEach(() => {
+    변수 = jest.fn(); // mock 함수
+})
+it(~~~, () => {
+    check(()=> true, onSuccess, onFail);
+    expect(onSuccess.mock.calls.length).toBe(1) //-> onSuccess 라는 함수가 1번이라도 호출 된다
+    expect(onSuccess).toHaveBeenCalledTimes(1) // 위와 동일
+    expect(onSuccess.mock.calls[0][0]).toBe('yes') //-> onSuccess 라는 함수에 yes라는 인자가 전달된다
+    expect(onSuccess).toHaveBeenCalledWith('yes') // 위와 동일
+})
+```
