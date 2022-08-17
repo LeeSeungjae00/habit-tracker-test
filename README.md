@@ -54,7 +54,7 @@ jest.mock('가져올 가짜 함수')
 ...
 
 let productSevice;
-const fetchItems = fest.fn(async () =? [
+const fetchItems = fest.fn(async () => [
     {item : "Milk", ~~},
     ...
 ])
@@ -97,3 +97,43 @@ breforeEach(() => {
 
 ...
 ```
+
+단순히 데이터를 받아오는 것은 stub 이 나을 수 있지만 내부 로직 상에서 몇번 함수가 불러오는지나, 내부 로직들이 더 있을 땐 mock 도 같이 잘 고려해서 사용해야 한다.
+
+### React 컴포넌트 test 해보기
+사용자가 add를 눌렀을 때 어떤 동작들을 하는지
+기본적인 test 형식은 같음
+
+let onAdd;
+breforeEach(() => {
+    onAdd = jest.fn()
+})
+
+it('버튼 클릭시 onAdd 클릭', () => {
+    //given
+    render(<컴포넌트 onAdd = {onAdd}>)
+    const input = screen.getByPlaceholderTest("Habit")
+    const button = screen.getByText('Add');
+    //when
+    //userEvent, fireEvent 사용 가능 fireEvent 는 버튼에 초정이 없이 클릭
+    userEvent.type(input, 'New Hp')
+    userEvent.click(button)
+    //then
+    expect(onAdd).toHaveBeenCalledWith("New Hp")
+})
+
+렌더 작업과 input button 은 beforeEach 에서 해주기가 가능
+
+### 스냅샷 test
+현재 컴포넌트의 상태를 지금 상태로 보여줘야 한다는 걸 test 할 수 있는게 2가지 방법
+1. 실제 object 를 스냅샷 해서 검사하는지
+2. 화면에 표시되는 UI 자체를검사
+
+스냅샷 test 는 작업을 한 후 예상치 않게 UI 가 변경되는 것을 막을 수 있음. 예샹하는 react render object 를 가지고 있다가 test 할 때 비교하는 것
+
+npm installreact-test-renderer --save-dev 를 통해 설치 필요
+
+it('render',() => {
+    const component = renderer.create(<컴포넌트 props 전달/>)
+    expect(component.toJSON()).toMatchSnapshot();
+})
