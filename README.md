@@ -137,3 +137,5 @@ it('render',() => {
     const component = renderer.create(<컴포넌트 props 전달/>)
     expect(component.toJSON()).toMatchSnapshot();
 })
+
+npm run test --coverage 를 통해 커버리지 확률 알 수 있음
